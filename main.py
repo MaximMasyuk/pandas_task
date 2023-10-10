@@ -10,8 +10,8 @@ average_fare_per_km = df['total_amount'].mean() / (df['trip_distance'] * 1.6).me
 
 
 def payed_by_cash(df):
-    total_trips = len(df)
-    cash_payment_trips = len(df[df["payment_type"] == 2])
+    total_trips = df["passenger_count"].count()
+    cash_payment_trips = df.where(df["payment_type"] == 2)["payment_type"].count()
     percentage_cash_payments = (cash_payment_trips / total_trips) * 100
     print(f"Percentage of trips are payed by cash {percentage_cash_payments:.2f}%")
 
